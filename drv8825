@@ -1,0 +1,47 @@
+
+#define pinEnable 13 // activation
+#define pinStep    9 // pas signal
+#define pinDir     8 // direction
+
+
+void setup(){
+  Serial.begin(9600);
+  Serial.println("DRV8825");
+  
+  pinMode( pinEnable, OUTPUT );
+  pinMode( pinDir   , OUTPUT );
+  pinMode( pinStep  , OUTPUT );
+}
+
+void loop(){
+  int i = 0;
+  
+  digitalWrite( pinDir   , HIGH);
+  digitalWrite( pinStep  , LOW);
+  
+ 
+  for( i=0; i<666; i++){
+    Serial.println( i );
+    digitalWrite( pinStep, HIGH );
+    delay( 1 );
+    digitalWrite( pinStep, LOW );
+    delay( 1 );
+  } 
+  
+ //change direction
+  digitalWrite( pinDir   , LOW);
+  
+
+  for( i=0; i<200; i++){
+    Serial.println( i );
+    digitalWrite( pinStep, HIGH );
+    delay( 1 );
+    digitalWrite( pinStep, LOW );
+    delay( 1 );
+  } 
+  
+  digitalWrite( pinEnable, HIGH );
+  
+  Serial.println("end");
+  while( true );
+}
