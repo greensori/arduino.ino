@@ -19,7 +19,7 @@ void loop() {
       digitalWrite(STEP, HIGH);
       delayMicroseconds(x);
       digitalWrite(STEP, LOW);
-      if(x>150) x--;  
+      if(x>800) x--;  
     }
   }
 }
