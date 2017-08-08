@@ -9,7 +9,10 @@
 //        -Sends all data via serial                                      //
 ////////////////////////////////////////////////////////////////////////////
 
-
+//vin - 5v
+//gnd - gnd
+//scl - a5
+//sda - a4
 //BMP280
 
 #include <Wire.h>
