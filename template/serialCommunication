@@ -1,0 +1,21 @@
+#serial communication with python 
+
+void setup(){
+  Serial.begin(115200); //setting baudrate
+}
+
+void loop()
+{
+  while (Serial.available()) // if there in no signal
+  {
+   delay(30);  //delay to allow buffer to fill 
+   if (Serial.available() > 0) 
+     {
+       char rx = Serial.read();  //gets one byte from serial buffer
+       if (rx == 1)
+       {
+         Serial.println("receive from python"); //send massage to python
+       }
+     }
+  }
+}
