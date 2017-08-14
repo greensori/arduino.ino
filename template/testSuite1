@@ -1,0 +1,56 @@
+#define ENA     13
+#define STEP    9//for step signal
+#define DIR     8//for direction
+
+int sensorPin = A0;
+int sensorValue = 0;
+long pydata;
+int timer = 1000;
+int i;
+
+void setup() {
+    Serial.begin(9600);
+    pinMode(ENA, OUTPUT);
+    pinMode(STEP, OUTPUT);
+    pinMode(DIR, OUTPUT);
+}
+
+void loop() {
+  
+}
+
+int vsensor() {
+delay(1000);
+sensorValue = analogRead(sensorPin);
+Serial.println(sensorValue);
+return sensorValue;
+}
+
+void pyread() {
+  pydata = -1;
+  while (pydata = -1) {
+    if (Serial.available() > 0){
+    pydata = Serial.parseInt();
+    Serial.println(pydata);
+    }}
+}
+
+void stepmov(int vEna, int vDir, int vstep, int vvelo, int vaccel){
+  digitalWrite(ENA, LOW)
+  if (vdir = 0) {
+  digitalWrite(DIR, LOW);
+  } elif (vdir = 1) {
+  digitalWrite(DIR, HIGH);
+  }
+  for (i = 0; i < vstep; i++) {
+    digitalWrite(STEP, HIGH);
+    delayMicroseconds(vvelo);
+    digitalWrite(STEP, LOW);
+    delayMicroseconds(vvelo);
+    if (vvelo > vaccel) {
+      vvelo = vvelo - vaccel;
+    }
+  }
+  digitalWrite(ENA, HIGH);
+}
+
