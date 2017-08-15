@@ -1,3 +1,4 @@
+
 #define ENA     13
 #define STEP    9//for step signal
 #define DIR     8//for direction
@@ -5,7 +6,7 @@
 int sensorPin = A0;
 int sensorValue = 0;
 long pydata;
-int timer = 1000;
+int timer = 1200;
 int i;
 
 void setup() {
@@ -15,14 +16,18 @@ void setup() {
     pinMode(DIR, OUTPUT);
 }
 
+
 void loop() {
-  
+  sensorValue = analogRead(sensorPin);
+  stepmov(1, 1, sensorValue, 1000, 900, 2);
+  delay(3000);
 }
+
 
 int vsensor() {
 delay(1000);
 sensorValue = analogRead(sensorPin);
-Serial.println(sensorValue);
+//Serial.println(sensorValue);
 return sensorValue;
 }
 
@@ -35,22 +40,31 @@ void pyread() {
     }}
 }
 
-void stepmov(int vEna, int vDir, int vstep, int vvelo, int vaccel){
-  digitalWrite(ENA, LOW);
-  if (vDir = 0) {
-  digitalWrite(DIR, LOW);
-  } else if (vDir = 1) {
-  digitalWrite(DIR, HIGH);
-  }
+//(start, direction, stepcount, velocity, maxcimun speed, accelalte value)
+void stepmov(int vEna, int vDir, int vstep, int vvelo, int vmax, int vaccel){
+    if (vEna > 0) {
+      digitalWrite(ENA, LOW);
+    }
+    if (vEna < 0) {
+      digitalWrite(ENA, HIGH);
+    }
+    
+    if (vDir < 0) {
+    digitalWrite(DIR, LOW);
+    } else if (vDir > 0) {
+      digitalWrite(DIR, HIGH);
+    }
   for (i = 0; i < vstep; i++) {
     digitalWrite(STEP, HIGH);
     delayMicroseconds(vvelo);
     digitalWrite(STEP, LOW);
     delayMicroseconds(vvelo);
-    if (vvelo > vaccel) {
+    if (vvelo > vmax) {
       vvelo = vvelo - vaccel;
     }
   }
   digitalWrite(ENA, HIGH);
 }
+
+
 
