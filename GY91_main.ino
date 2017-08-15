@@ -1,3 +1,15 @@
+
+##description
+VIN: Voltage Supply Pin
+3V3: 3.3v Regulator output
+GND: 0V Power Supply
+SCL: I2C Clock / SPI Clock
+SDA: I2C Data or SPI Data Input
+SDO/SAO: SPI Data output / I2C Slave Address configuration pin
+NCS: Chip Select for SPI mode only for MPU-9250
+CSB: Chip Select for BMP280
+
+
 ////////////////////////////////////////////////////////////////////////////
 // This sketch is for the Cansat project of the IES El Burgo de las Rozas //
 //    We make it public for helping others that may struggle with the     //
